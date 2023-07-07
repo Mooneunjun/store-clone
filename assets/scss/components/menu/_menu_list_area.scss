@@ -1,0 +1,81 @@
+.menu-list-area {
+  background-color: #fff;
+
+  .common-inner {
+    padding: 30px $m-padding 28px;
+  }
+
+  &#추천 {
+    margin-top: 0px;
+  }
+  &:not(.new):not(.discount):not(.typical) {
+    margin-top: 10px;
+  }
+
+  .new,
+  .discount,
+  .typcial {
+    border-bottom: 1px solid $booking-color-border144;
+  }
+
+  &.is-closed {
+    &.is-closed + .is-closed {
+      margin-top: 0;
+      border-top: 1px solid $booking-color-border144;
+    }
+
+    .ico-arrow {
+      transform: rotate(180deg);
+    }
+
+    .menu-list {
+      display: none;
+    }
+  }
+
+  .menu-category {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .title-area {
+    display: flex;
+    align-items: center;
+
+    .period {
+      font-size: 14px;
+      letter-spacing: -0.3px;
+      color: $booking-color-text4;
+      &::before {
+        content: "";
+        letter-spacing: -0.3px;
+        display: inline-block;
+        margin: 0 10px;
+        width: 4px;
+        height: 4px;
+        border-radius: 100%;
+        background-color: #ededed;
+        vertical-align: middle;
+      }
+      .ico-period {
+        vertical-align: -3px;
+      }
+    }
+  }
+
+  .title {
+    z-index: 0;
+    position: relative;
+    vertical-align: top;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: $booking-color-text100;
+  }
+}
+
+.ico-cart {
+  width: 16px;
+  height: 16px;
+}

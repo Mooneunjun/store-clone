@@ -1,0 +1,77 @@
+.header-area {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  color: #242424;
+  z-index: 999;
+}
+
+.place-header {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $place-header-height;
+  .title {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 21px;
+  }
+  .link-back {
+    display: flex;
+  }
+
+  .my-orders {
+    font-size: 15px;
+    font-weight: 700;
+    opacity: 0.8;
+    padding-right: $m-padding;
+  }
+}
+
+.place-tab {
+  display: flex;
+  height: $place-tab-height;
+  background-color: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+
+  .tab-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 8px;
+  }
+
+  .tab {
+    flex: 1;
+    padding: 0 12px;
+    font-size: 16px;
+    text-align: center;
+    opacity: 0.6;
+    &.is-active {
+      font-weight: 700;
+      opacity: 1;
+      .txt::after {
+        content: "";
+        position: absolute;
+
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: #242424;
+      }
+    }
+
+    .txt {
+      line-height: $place-tab-height;
+      position: relative;
+      padding: 0 4px;
+      display: inline-block;
+    }
+  }
+}

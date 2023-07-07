@@ -1,0 +1,57 @@
+.order-type-popup {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 33px 0px 0px;
+  background-color: #fff;
+  text-align: center;
+  z-index: 10000;
+  border-radius: 15px 15px 0 0;
+
+  .title {
+    font-size: 20px;
+    font-weight: 680;
+    color: $booking-color-text1;
+  }
+
+  .type-list {
+    margin: 29px auto 0;
+    padding-bottom: 42px;
+    display: flex;
+
+    .type-item {
+      flex: 1;
+      & + .type-item {
+        border-left: 1px solid $booking-color-border103;
+      }
+
+      .icon {
+        display: inline-block;
+        width: 95px;
+        height: 100px;
+        color: #03c75a;
+      }
+
+      .desc {
+        margin-top: 8px;
+        font-size: 15px;
+        line-height: 1.5;
+        font-weight: 600;
+        color: $booking-color-text1;
+      }
+
+      .btn-selection {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 6px 18px;
+        font-size: 16px;
+        font-weight: 700;
+        border-radius: 28px;
+        background-color: $booking-color-bg189;
+        color: #fff;
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+.no_menu_review {
+  padding: 6px 18px 22px 18px;
+  background-color: #fff;
+  background-color: $booking-color-bg2;
+  text-align: center;
+  &.no_menu_review .no_menu_review_inner {
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #f8fafb;
+    background-color: $booking-color-bg3;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  &.no_menu_review .text_box {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    padding: 20px 142px 18px 20px;
+    line-height: 1.5;
+    letter-spacing: -0.3px;
+    word-break: keep-all;
+    color: #666;
+    color: $booking-color-text4;
+  }
+
+  &.no_menu_review .text_box::after {
+    content: "";
+    width: 96px;
+    height: 53px;
+    background-position: -593px 0px;
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    display: inline-block;
+    overflow: hidden;
+    color: rgba(0, 0, 0, 0);
+    white-space: nowrap;
+    background-image: url(https://m.booking.naver.com/public/images/sprites/sp_local_pay-29af4c35.png);
+    background-size: 689px 598px;
+  }
+}
