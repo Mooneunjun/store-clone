@@ -1,17 +1,22 @@
 document.querySelector(".btn-order").addEventListener("click", function () {
-  // body 요소에 'scroll-off' 클래스 추가
-  document.body.classList.add("scroll-off");
+  // 메뉴가 음료수 카테고리인 경우 옵션 목록을 숨김
+  if (menuDetail.category === "음료") {
+  }
+  // 메뉴가 음료수 카테고리가 아닌 경우 옵션 목록을 표시
+  else {
+    // body 요소에 'scroll-off' 클래스 추가
+    document.body.classList.add("scroll-off");
+    changeThemeColor("#999");
+    // .option-popup-area 요소의 'hidden' 클래스 제거
+    const optionPopupArea = document.querySelector(".option-popup-area");
+    optionPopupArea.classList.remove("hidden");
 
-  // .option-popup-area 요소의 'hidden' 클래스 제거
-  const optionPopupArea = document.querySelector(".option-popup-area");
-  optionPopupArea.classList.remove("hidden");
-
-  // .menu-option-popup 요소에 애니메이션 클래스 추가
-  const menuOptionPopup = document.querySelector(".menu-option-popup");
-  menuOptionPopup.classList.remove("animate-slide-down");
-  menuOptionPopup.classList.add("animate-slide-up");
-  ///
-
+    // .menu-option-popup 요소에 애니메이션 클래스 추가
+    const menuOptionPopup = document.querySelector(".menu-option-popup");
+    menuOptionPopup.classList.remove("animate-slide-down");
+    menuOptionPopup.classList.add("animate-slide-up");
+    ///
+  }
   ///
   // .name 클래스를 가진 요소에 삽입하기
   document.querySelector(".name").textContent = menuDetail.name;
@@ -43,23 +48,25 @@ document.querySelector(".btn-order").addEventListener("click", function () {
 
 ///
 ///
-//
-
+///
 //
 ///
 ///
 
 document.querySelector(".btn-close").addEventListener("click", function () {
+  changeThemeColor("#fff");
+  const popup = document.querySelector(".content-body");
+  popup.scrollTop = 0;
   // body 요소에서 'scroll-off' 클래스 제거
   document.body.classList.remove("scroll-off");
 
   // .menu-option-popup 요소에 애니메이션 클래스 추가
   const menuOptionPopup = document.querySelector(".menu-option-popup");
   menuOptionPopup.classList.add("animate-slide-down");
-
   // 0.3초 후에 .option-popup-area 요소에 'hidden' 클래스 추가
   const optionPopupArea = document.querySelector(".option-popup-area");
   const dimmedLayer = document.querySelector(".dimmed-layer");
+  changeThemeColor("#fff");
   dimmedLayer.style.animation = "fade-out 0.3s ease"; // 添加渐变隐藏的动画效果
   setTimeout(function () {
     optionPopupArea.classList.add("hidden");

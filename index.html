@@ -8,13 +8,13 @@
 
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0,
-    viewport-fit=cover,user-scalable=no"
+      content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,viewport-fit=cover"
     />
     <title>주문 스토어 프로젝트</title>
     <link rel="stylesheet" href="./assets/css/styles.css" />
     <style></style>
   </head>
+
   <body class="scroll-off">
     <div class="container">
       <!-- 고정헤더영역 -->
@@ -828,7 +828,7 @@
             <p class="menu-name">메뉴이름</p>
             <p class="menu-price">9,999원</p>
           </div>
-          <a href="" class="btn-cart">
+          <a href="" class="order-cart">
             <span class="txt">주문하기</span>
             <span class="icon">
               <img
@@ -1112,39 +1112,15 @@
       </div>
     </div>
     <!-- // 옵션 팝업 영역-->
+    <script src="./assets/js/popup.js"></script>
+    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/header.js"></script>
+
+    <script src="./assets/js/category.js"></script>
+
+    <script src="./assets/js/menu.js"></script>
+
+    <script src="./assets/js/link.js"></script>
+    <script src="./assets/js/option_popup2.js"></script>
   </body>
-  <script src="./assets/js/popup.js"></script>
-  <script src="./assets/js/script.js"></script>
-  <script src="./assets/js/header.js"></script>
-
-  <script src="./assets/js/category.js"></script>
-
-  <script src="./assets/js/menu.js"></script>
-
-  <script src="./assets/js/option_popup2.js"></script>
-
-  <script>
-    // a 태그 href가 빈 상태일시 클릭하면 아무런 반응 없애주기 원래는 클릭하면 새로고침함
-    const anchorTags = document.querySelectorAll("a");
-    for (let i = 0; i < anchorTags.length; i++) {
-      const href = anchorTags[i].getAttribute("href");
-      if (href === "" || href === "/") {
-        anchorTags[i].addEventListener("click", function (event) {
-          event.preventDefault();
-        });
-      }
-    }
-
-    //카테고리 열기 닫히기 토글버튼
-    function toggleClosedClass(event) {
-      event.preventDefault();
-      const menuListArea = this.closest(".menu-list-area");
-      menuListArea.classList.toggle("is-closed");
-    }
-
-    const btnToggles = document.querySelectorAll(".btn-toggle");
-    btnToggles.forEach((btnToggle) => {
-      btnToggle.addEventListener("click", toggleClosedClass);
-    });
-  </script>
 </html>

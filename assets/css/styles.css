@@ -1165,7 +1165,7 @@ body.scroll-off {
   white-space: nowrap;
   overflow: hidden;
 }
-.order-box-area .btn-cart {
+.order-box-area .order-cart {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1458,6 +1458,7 @@ body.scroll-off {
 }
 .recent-menu-item .badge-cart {
   display: flex;
+  cursor: pointer;
   position: absolute;
   bottom: 45px;
   right: 0px;

@@ -3,9 +3,10 @@
 var menuDetail = JSON.parse(localStorage.getItem("menuDetail"));
 
 // detailImg 확인 후 이미지 추가
-if (menuDetail.detailImg) {
+if (menuDetail.imageUrl) {
   var menuImgElement = document.querySelector(".menu-img");
-  menuImgElement.style.backgroundImage = "url('" + menuDetail.detailImg + "')";
+  menuImgElement.style.backgroundImage =
+    "url('" + menuDetail.imageUrl + "?type=f459_345_60_sharpen')";
 }
 
 // 메뉴 이름 엘리먼트 찾기

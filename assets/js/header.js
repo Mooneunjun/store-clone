@@ -169,7 +169,7 @@ function createMenuItem(menu) {
     menuImgArea.appendChild(menuImg);
     menuImg.alt = menu.name;
   } else {
-    menuImg.src = menu.imageUrl;
+    menuImg.src = menu.imageUrl + "?type=f220_220_60_sharpen";
     menuImgArea.appendChild(menuImg);
     menuImg.alt = menu.name;
   }
@@ -177,6 +177,7 @@ function createMenuItem(menu) {
   // "badge-cart" 클래스를 가진 span 엘리먼트와 "ico-cart" 클래스를 가진 img 엘리먼트 추가
   const badgeCart = document.createElement("span");
   badgeCart.classList.add("badge-cart");
+  badgeCart.title = menu.name;
   const icoCart = document.createElement("img");
   icoCart.src = "./assets/images/ico-cart.svg";
   icoCart.alt = "주문하기";

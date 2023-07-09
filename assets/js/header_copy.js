@@ -104,4 +104,11 @@ linkBack.addEventListener("click", () => {
 });
 
 /////
+function changeThemeColor(color) {
+  // theme-color 메타 태그를 선택합니다.
+  const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+
+  // theme-color 메타 태그의 content 속성을 변경합니다.
+  themeColorMeta.setAttribute("content", color);
+}
 /////

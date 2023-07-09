@@ -66,7 +66,9 @@ if (newMenuItems.length > 0) {
       <div class="menu-img-area">
         ${
           item.imageUrl
-            ? ` <img src="${item.imageUrl}" alt="${item.name}" class="menu-img" width="100" height="100">`
+            ? ` <img src="${item.imageUrl + "type=f220_220_60_sharpen"}" alt="${
+                item.name
+              }" class="menu-img" width="100" height="100">`
             : `<img src="https://via.placeholder.com/100x110/ffffff/000000" alt="${item.name}" class="menu-img" width="100" height="110">`
         }
       </div>
@@ -135,11 +137,11 @@ if (newMenuItems.length > 0) {
     ${
       item.stock
         ? `
-        <a href="/" class="btn-cart">
+        <a href="/" class="btn-cart" title="${item.name}">
         <img class="ico-cart" src="./assets/images/ico-cart2.svg" alt="" srcset="">    </a>
       `
         : `
-        <a class="btn-cart disabled">품절</a>
+        <a class="btn-cart disabled" title="${item.name}">품절</a>
       `
     }
   `;
@@ -196,7 +198,9 @@ if (discountedMenuItems.length > 0) {
       <div class="menu-img-area">
         ${
           item.imageUrl
-            ? ` <img src="${item.imageUrl}" alt="${item.name}" class="menu-img" width="100" height="100">`
+            ? ` <img src="${item.imageUrl + "type=f220_220_60_sharpen"}" alt="${
+                item.name
+              }" class="menu-img" width="100" height="100">`
             : `<img src="https://via.placeholder.com/100x110/ffffff/000000" alt="${item.name}" class="menu-img" width="100" height="110">`
         }
       </div>
@@ -265,11 +269,11 @@ if (discountedMenuItems.length > 0) {
     ${
       item.stock
         ? `
-        <a href="/" class="btn-cart">
+        <a href="/" class="btn-cart" title="${item.name}">
         <img class="ico-cart" src="./assets/images/ico-cart2.svg" alt="" srcset="">    </a>
       `
         : `
-        <a class="btn-cart disabled">품절</a>
+        <a class="btn-cart disabled" title="${item.name}">품절</a>
       `
     }
   `;
@@ -326,7 +330,9 @@ if (typicalMenuItems.length > 0) {
       <div class="menu-img-area">
         ${
           item.imageUrl
-            ? ` <img src="${item.imageUrl}" alt="${item.name}" class="menu-img" width="100" height="100">`
+            ? ` <img src="${item.imageUrl + "type=f220_220_60_sharpen"}" alt="${
+                item.name
+              }" class="menu-img" width="100" height="100">`
             : `<img src="https://via.placeholder.com/100x110/ffffff/000000" alt="${item.name}" class="menu-img" width="100" height="110">`
         }
       </div>
@@ -395,11 +401,11 @@ if (typicalMenuItems.length > 0) {
     ${
       item.stock
         ? `
-        <a href="/" class="btn-cart">
+        <a href="/" class="btn-cart" title="${item.name}">
         <img class="ico-cart" src="./assets/images/ico-cart2.svg" alt="" srcset="">    </a>
       `
         : `
-        <a class="btn-cart disabled">품절</a>
+        <a class="btn-cart disabled" title="${item.name}">품절</a>
       `
     }
   `;
@@ -554,11 +560,11 @@ function createMenuItemElement(menuItemElem) {
   ${
     item.stock
       ? `
-      <a href="/" class="btn-cart">
+      <a href="/" class="btn-cart" title="${item.name}">
       <img class="ico-cart" src="./assets/images/ico-cart2.svg" alt="" srcset="">    </a>
     `
       : `
-      <a class="btn-cart disabled">품절</a>
+      <a class="btn-cart disabled" title="${item.name}">품절</a>
     `
   }
 `;
@@ -604,3 +610,25 @@ tabSwitch.addEventListener("click", () => {
 
 ////
 // 메뉴 리스트를 가져와서 최근 주문한 메뉴 아이템을 표시하는 함수
+
+const menuItems = document.querySelectorAll(".menu-item");
+
+menuItems.forEach((recentMenuLink) => {
+  recentMenuLink.addEventListener("click", () => {
+    const title = recentMenuLink.getAttribute("title");
+    menuItem = findMenuItemByTitle(storeList, title);
+    // menuItem을 로컬 스토리지에 menuDetail로 저장
+    localStorage.setItem("menuDetail", JSON.stringify(menuItem));
+  });
+});
+
+const recentMenuItems = document.querySelectorAll(".recent-menu-item");
+
+recentMenuItems.forEach((recentMenuLink) => {
+  recentMenuLink.addEventListener("click", () => {
+    const title = recentMenuLink.getAttribute("title");
+    menuItem = findMenuItemByTitle(storeList, title);
+    // menuItem을 로컬 스토리지에 menuDetail로 저장
+    localStorage.setItem("menuDetail", JSON.stringify(menuItem));
+  });
+});
