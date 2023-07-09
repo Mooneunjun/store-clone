@@ -61,7 +61,7 @@ if (newMenuItems.length > 0) {
     menuItem.title = item.name;
     menuItem.innerHTML = `
     <a href="${
-      item.link ? item.link : `/detail.html`
+      item.link ? item.link : `store-clone/detail.html`
     }" class="menu-detail" title="${item.name}">
       <div class="menu-img-area">
         ${
@@ -193,7 +193,7 @@ if (discountedMenuItems.length > 0) {
     menuItem.title = item.name;
     menuItem.innerHTML = `
     <a href="${
-      item.link ? item.link : `/detail.html`
+      item.link ? item.link : `store-clone/detail.html`
     }" class="menu-detail" title="${item.name}">
       <div class="menu-img-area">
         ${
@@ -325,7 +325,7 @@ if (typicalMenuItems.length > 0) {
     menuItem.title = item.name;
     menuItem.innerHTML = `
     <a href="${
-      item.link ? item.link : `/detail.html`
+      item.link ? item.link : `store-clone/detail.html`
     }" class="menu-detail" title="${item.name}">
       <div class="menu-img-area">
         ${
@@ -491,7 +491,7 @@ function createMenuItemElement(menuItemElem) {
   menuItem.title = item.name;
   menuItem.innerHTML = `
   <a href="${
-    item.link ? item.link : `/detail.html`
+    item.link ? item.link : `store-clone/detail.html`
   }" class="menu-detail" title="${item.name}">
     <div class="menu-img-area">
       ${

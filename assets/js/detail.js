@@ -24,7 +24,7 @@ if (menuDetail.isNew) {
 
   // 새로운 메뉴를 나타내는 이미지 요소 생성
   var newIconElement = document.createElement("img");
-  newIconElement.src = "./assets/images/ico-new.svg";
+  newIconElement.src = "../assets/images/ico-new.svg";
   newIconElement.alt = "new";
   newIconElement.className = "ico-new";
 
@@ -143,7 +143,7 @@ if (menuDetail.review && menuDetail.review.length > 0) {
 
   // .menu-grade에 별 아이콘과 평균 평점 넣어주기
   const menuGradeElement = document.querySelector(".menu-grade");
-  menuGradeElement.innerHTML = `<img src="./assets/images/ico-star.svg" alt="" srcset="" class="ico-star"> ${averageStars.toFixed(
+  menuGradeElement.innerHTML = `<img src="../assets/images/ico-star.svg" alt="" srcset="" class="ico-star"> ${averageStars.toFixed(
     1
   )}`;
 } else {
