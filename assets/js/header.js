@@ -186,7 +186,7 @@ function createMenuItem(menu) {
   badgeCart.classList.add("badge-cart");
   badgeCart.title = menu.name;
   const icoCart = document.createElement("img");
-  icoCart.src = "../assets/images/ico-cart.svg";
+  icoCart.src = "./assets/images/ico-cart.svg";
   icoCart.alt = "주문하기";
   icoCart.classList.add("ico-cart");
   badgeCart.appendChild(icoCart);
