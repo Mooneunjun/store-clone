@@ -3,7 +3,6 @@
 // 获取所有的 .btn-cart 元素
 const optionItems = document.querySelectorAll(".option-item");
 const btnCarts = document.querySelectorAll(".btn-cart");
-const badegeCarts = document.querySelectorAll(".badge-cart");
 let menuItem;
 
 //
@@ -48,25 +47,28 @@ function handleOpen(btn) {
 
       document.querySelector(".amount").textContent = 1;
 
+      // body 요소에 'scroll-off' 클래스 추가
+      document.body.classList.add("scroll-off");
+      // 테마 색상 변경 함수
+      changeThemeColor("#999");
+      // .option-popup-area 요소의 'hidden' 클래스 제거
+      const optionPopupArea = document.querySelector(".option-popup-area");
+      optionPopupArea.classList.remove("hidden");
       // 메뉴가 음료수 카테고리인 경우 옵션 목록을 숨김
+      const contentBody = document.querySelector(".content-body");
       if (menuDetail.category === "음료") {
+        contentBody.classList.add("hidden");
       }
       // 메뉴가 음료수 카테고리가 아닌 경우 옵션 목록을 표시
       else {
-        // body 요소에 'scroll-off' 클래스 추가
-        document.body.classList.add("scroll-off");
-        // 테마 색상 변경 함수
-        changeThemeColor("#999");
-        // .option-popup-area 요소의 'hidden' 클래스 제거
-        const optionPopupArea = document.querySelector(".option-popup-area");
-        optionPopupArea.classList.remove("hidden");
-
-        // .menu-option-popup 요소에 애니메이션 클래스 추가
-        const menuOptionPopup = document.querySelector(".menu-option-popup");
-        menuOptionPopup.classList.remove("animate-slide-down");
-        menuOptionPopup.classList.add("animate-slide-up");
-        ///
+        contentBody.classList.remove("hidden");
       }
+      // .menu-option-popup 요소에 애니메이션 클래스 추가
+      const menuOptionPopup = document.querySelector(".menu-option-popup");
+      menuOptionPopup.classList.remove("animate-slide-down");
+      menuOptionPopup.classList.add("animate-slide-up");
+      ///
+
       ///
       // .name 클래스를 가진 요소에 삽입하기
       document.querySelector(".name").textContent = menuDetail.name;

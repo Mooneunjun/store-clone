@@ -225,5 +225,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
-//두번탭 두번터치 확대/축소 방지

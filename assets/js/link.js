@@ -20,3 +20,11 @@ const btnToggles = document.querySelectorAll(".btn-toggle");
 btnToggles.forEach((btnToggle) => {
   btnToggle.addEventListener("click", toggleClosedClass);
 });
+
+const badegeCarts = document.querySelectorAll(".badge-cart");
+// 현재 영업시간 아닌경우 badegeCart 숨기기
+if (!checkTime()) {
+  badegeCarts.forEach((badegeCart) => {
+    badegeCart.classList.add("hidden");
+  });
+}

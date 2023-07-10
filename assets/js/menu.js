@@ -61,7 +61,7 @@ if (newMenuItems.length > 0) {
     menuItem.title = item.name;
     menuItem.innerHTML = `
     <a href="${
-      item.link ? item.link : `store-clone/detail.html`
+      item.link ? item.link : `detail.html`
     }" class="menu-detail" title="${item.name}">
       <div class="menu-img-area">
         ${
@@ -78,7 +78,7 @@ if (newMenuItems.length > 0) {
   
           ${
             item.isNew
-              ? '<img src="./assets/images/ico-new.svg" alt="new" class="ico-new">'
+              ? '<img src="../assets/images/ico-new.svg" alt="new" class="ico-new">'
               : ""
           }
           ${
@@ -103,7 +103,7 @@ if (newMenuItems.length > 0) {
             item.review
               ? `
           <span class="menu-grade">
-            <img src="./assets/images/ico-star.svg" class="ico-star" alt="">${average}
+            <img src="../assets/images/ico-star.svg" class="ico-star" alt="">${average}
           </span>`
               : ""
           }
@@ -138,7 +138,7 @@ if (newMenuItems.length > 0) {
       item.stock
         ? `
         <a href="/" class="btn-cart" title="${item.name}">
-        <img class="ico-cart" src="./assets/images/ico-cart2.svg" alt="" srcset="">    </a>
+        <img class="ico-cart" src="../assets/images/ico-cart2.svg" alt="" srcset="">    </a>
       `
         : `
         <a class="btn-cart disabled" title="${item.name}">품절</a>
@@ -168,7 +168,7 @@ if (discountedMenuItems.length > 0) {
       <div class="title-area">
         <p class="title">할인 메뉴</p>
         <div class="period">
-          <img class="ico-period" src="./assets/images/ico-period.svg" alt="">
+          <img class="ico-period" src="../assets/images/ico-period.svg" alt="">
           [은준페이 결제시] 최대 30% 할인
         </div>
       </div>
@@ -193,7 +193,7 @@ if (discountedMenuItems.length > 0) {
     menuItem.title = item.name;
     menuItem.innerHTML = `
     <a href="${
-      item.link ? item.link : `store-clone/detail.html`
+      item.link ? item.link : `detail.html`
     }" class="menu-detail" title="${item.name}">
       <div class="menu-img-area">
         ${
@@ -210,7 +210,7 @@ if (discountedMenuItems.length > 0) {
   
           ${
             item.isNew
-              ? '<img src="./assets/images/ico-new.svg" alt="new" class="ico-new">'
+              ? '<img src="../assets/images/ico-new.svg" alt="new" class="ico-new">'
               : ""
           }
           ${
@@ -235,7 +235,7 @@ if (discountedMenuItems.length > 0) {
             item.review
               ? `
           <span class="menu-grade">
-            <img src="./assets/images/ico-star.svg" class="ico-star" alt="">${average}
+            <img src="../assets/images/ico-star.svg" class="ico-star" alt="">${average}
           </span>`
               : ""
           }
@@ -270,7 +270,7 @@ if (discountedMenuItems.length > 0) {
       item.stock
         ? `
         <a href="/" class="btn-cart" title="${item.name}">
-        <img class="ico-cart" src="./assets/images/ico-cart2.svg" alt="" srcset="">    </a>
+        <img class="ico-cart" src="../assets/images/ico-cart2.svg" alt="" srcset="">    </a>
       `
         : `
         <a class="btn-cart disabled" title="${item.name}">품절</a>
@@ -325,7 +325,7 @@ if (typicalMenuItems.length > 0) {
     menuItem.title = item.name;
     menuItem.innerHTML = `
     <a href="${
-      item.link ? item.link : `store-clone/detail.html`
+      item.link ? item.link : `detail.html`
     }" class="menu-detail" title="${item.name}">
       <div class="menu-img-area">
         ${
@@ -342,7 +342,7 @@ if (typicalMenuItems.length > 0) {
   
           ${
             item.isNew
-              ? '<img src="./assets/images/ico-new.svg" alt="new" class="ico-new">'
+              ? '<img src="../assets/images/ico-new.svg" alt="new" class="ico-new">'
               : ""
           }
           ${
@@ -367,7 +367,7 @@ if (typicalMenuItems.length > 0) {
             item.review
               ? `
           <span class="menu-grade">
-            <img src="./assets/images/ico-star.svg" class="ico-star" alt="">${average}
+            <img src="../assets/images/ico-star.svg" class="ico-star" alt="">${average}
           </span>`
               : ""
           }
@@ -402,7 +402,7 @@ if (typicalMenuItems.length > 0) {
       item.stock
         ? `
         <a href="/" class="btn-cart" title="${item.name}">
-        <img class="ico-cart" src="./assets/images/ico-cart2.svg" alt="" srcset="">    </a>
+        <img class="ico-cart" src="../assets/images/ico-cart2.svg" alt="" srcset="">    </a>
       `
         : `
         <a class="btn-cart disabled" title="${item.name}">품절</a>
@@ -442,7 +442,7 @@ categoryItems.forEach(function (item) {
     <div class="menu-category">
       <p class="title">${categoryName}</p>
       <button class="btn-toggle">
-        <img src="./assets/images/ico-arrow.svg" alt="" class="ico-arrow">
+        <img src="../assets/images/ico-arrow.svg" alt="" class="ico-arrow">
       </button>
     </div>
     <ul class="menu-list">
@@ -491,7 +491,7 @@ function createMenuItemElement(menuItemElem) {
   menuItem.title = item.name;
   menuItem.innerHTML = `
   <a href="${
-    item.link ? item.link : `store-clone/detail.html`
+    item.link ? item.link : `detail.html`
   }" class="menu-detail" title="${item.name}">
     <div class="menu-img-area">
       ${
@@ -506,7 +506,7 @@ function createMenuItemElement(menuItemElem) {
 
         ${
           item.isNew
-            ? '<img src="./assets/images/ico-new.svg" alt="new" class="ico-new">'
+            ? '<img src="../assets/images/ico-new.svg" alt="new" class="ico-new">'
             : ""
         }
         ${
@@ -527,7 +527,7 @@ function createMenuItemElement(menuItemElem) {
           item.review
             ? `
         <span class="menu-grade">
-          <img src="./assets/images/ico-star.svg" class="ico-star" alt="">${average}
+          <img src="../assets/images/ico-star.svg" class="ico-star" alt="">${average}
         </span>`
             : ""
         }
@@ -561,7 +561,7 @@ function createMenuItemElement(menuItemElem) {
     item.stock
       ? `
       <a href="/" class="btn-cart" title="${item.name}">
-      <img class="ico-cart" src="./assets/images/ico-cart2.svg" alt="" srcset="">    </a>
+      <img class="ico-cart" src="../assets/images/ico-cart2.svg" alt="" srcset="">    </a>
     `
       : `
       <a class="btn-cart disabled" title="${item.name}">품절</a>

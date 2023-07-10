@@ -3,19 +3,24 @@
 const storeName = document.querySelector("#store-name");
 storeName.textContent = storeList.store[0].business.name;
 
+// 샐러드 성수점의 영업시간을 배열로 가져옵니다.
+const businessHours = [
+  parseInt(storeList.store[0].business.open),
+  parseInt(storeList.store[0].business.close),
+];
+// 현재 시간이 영업시간 내에 있는지 확인합니다.
+function checkTime() {
+  const currentTime = new Date();
+  const currentHour = currentTime.getHours();
+
+  return currentHour >= businessHours[0] && currentHour < businessHours[1];
+}
+
 //주문 시간 가능 확인
 function checkTimeAndUpdate() {
   const alertElement = document.querySelector(".info-main-notice.alert");
   const infoElement = document.querySelector(".info-main-notice:not(.alert)");
-  const currentTime = new Date();
-  const currentHour = currentTime.getHours();
   const icoClockAlert = document.querySelector(".ico-clock-alert");
-
-  // 샐러드 성수점의 영업시간을 배열로 가져옵니다.
-  const businessHours = [
-    parseInt(storeList.store[0].business.open),
-    parseInt(storeList.store[0].business.close),
-  ];
 
   //영업시간 알려주기
   if (businessHours[0] <= 12) {
@@ -24,7 +29,9 @@ function checkTimeAndUpdate() {
     icoClockAlert.textContent = `내일 오후 ${businessHours[0]}시 이후로 다시 방문해주세요.`;
   }
 
-  if (currentHour >= businessHours[0] && currentHour < businessHours[1]) {
+  //
+
+  if (checkTime()) {
     alertElement.classList.add("hidden");
     infoElement.classList.remove("hidden");
   } else {
@@ -141,7 +148,7 @@ function createMenuItem(menu) {
   menuLink.classList.add("recent-menu-link");
 
   if (!menu.link) {
-    menuLink.href = "/detail.html";
+    menuLink.href = "detail.html";
     menuLink.title = menu.name;
   } else {
     menuLink.href = menu.link;
@@ -179,7 +186,7 @@ function createMenuItem(menu) {
   badgeCart.classList.add("badge-cart");
   badgeCart.title = menu.name;
   const icoCart = document.createElement("img");
-  icoCart.src = "./assets/images/ico-cart.svg";
+  icoCart.src = "../assets/images/ico-cart.svg";
   icoCart.alt = "주문하기";
   icoCart.classList.add("ico-cart");
   badgeCart.appendChild(icoCart);
