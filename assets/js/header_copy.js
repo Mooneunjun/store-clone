@@ -57,7 +57,7 @@ menuList.forEach((item) => {
 
 console.log(menuList);
 // 평균을 구합니다.
-let average = sum / menuList.length;
+let average = (sum / menuList.length) * 1.5;
 
 // orderNum이 평균값보다 큰 경우, isPopular을 true로 설정합니다.
 menuList.forEach((item) => {

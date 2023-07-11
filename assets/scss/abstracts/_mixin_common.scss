@@ -38,6 +38,15 @@
   }
 }
 
+@keyframes slideDownCart {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
 @keyframes fade-out {
   0% {
     opacity: 1;

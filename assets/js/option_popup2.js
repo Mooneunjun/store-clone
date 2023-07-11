@@ -3,6 +3,7 @@
 // 获取所有的 .btn-cart 元素
 const optionItems = document.querySelectorAll(".option-item");
 const btnCarts = document.querySelectorAll(".btn-cart");
+const btnOrder = document.querySelector(".btn-order");
 let menuItem;
 
 //
@@ -42,8 +43,17 @@ function handleOpen(btn) {
         return formattedNumber + "원";
       }
 
-      const btnOrder = document.querySelector(".btn-order");
-      btnOrder.textContent = "1개 담기 " + formattedPrice;
+      if (menuDetail.stock) {
+        btnOrder.removeAttribute("disabled");
+        btnOrder.textContent = "1개 담기 " + formattedPrice;
+      } else {
+        btnOrder.setAttribute("disabled", true);
+        btnOrder.textContent = "일시 품절";
+      }
+      if (!checkTime()) {
+        btnOrder.textContent = "영업시간이 아닙니다.";
+        btnOrder.setAttribute("disabled", true);
+      }
 
       document.querySelector(".amount").textContent = 1;
 
@@ -54,13 +64,19 @@ function handleOpen(btn) {
       // .option-popup-area 요소의 'hidden' 클래스 제거
       const optionPopupArea = document.querySelector(".option-popup-area");
       optionPopupArea.classList.remove("hidden");
-      // 메뉴가 음료수 카테고리인 경우 옵션 목록을 숨김
+      // 메뉴가 음료수와 카테고리인 경우 옵션 목록을 숨김
       const contentBody = document.querySelector(".content-body");
-      if (menuDetail.category === "음료") {
+      const contentTop = document.querySelector(".content-top");
+      if (menuDetail.category === "음료" || menuDetail.category === "스프") {
+        contentTop.style.border = "none";
+        contentTop.style.boxShadow = "none";
         contentBody.classList.add("hidden");
       }
       // 메뉴가 음료수 카테고리가 아닌 경우 옵션 목록을 표시
       else {
+        //contentTop 만들어준 style 지우기
+        contentTop.style.border = "";
+        contentTop.style.boxShadow = "";
         contentBody.classList.remove("hidden");
       }
       // .menu-option-popup 요소에 애니메이션 클래스 추가
@@ -131,8 +147,19 @@ function handleOpen(btn) {
               );
 
               // 주문 버튼의 텍스트 값 설정
-              btnOrder.textContent =
-                amount + "개 담기 " + formatPrice(calculateTotal());
+              if (!menuDetail.stock) {
+                btnOrder.setAttribute("disabled", true);
+                btnOrder.textContent = "일시 품절";
+              } else {
+                btnOrder.removeAttribute("disabled");
+                btnOrder.textContent =
+                  amount + "개 담기 " + formatPrice(calculateTotal());
+              }
+
+              if (!checkTime()) {
+                btnOrder.setAttribute("disabled", true);
+                btnOrder.textContent = "영업시간이 아닙니다.";
+              }
             });
 
             // 첫 번째 요소에 대해 연산 수행
@@ -167,8 +194,19 @@ function handleOpen(btn) {
               );
 
               //주문 버튼의 텍스트 값 설정
-              btnOrder.textContent =
-                amount + "개 담기 " + formatPrice(calculateTotal());
+              if (!menuDetail.stock) {
+                btnOrder.setAttribute("disabled", true);
+                btnOrder.textContent = "일시 품절";
+              } else {
+                btnOrder.removeAttribute("disabled");
+                btnOrder.textContent =
+                  amount + "개 담기 " + formatPrice(calculateTotal());
+              }
+
+              if (!checkTime()) {
+                btnOrder.setAttribute("disabled", true);
+                btnOrder.textContent = "영업시간이 아닙니다.";
+              }
             });
 
             // amount 값이 1 이하인 경우 모든 버튼의 disabled 속성 추가
@@ -239,10 +277,17 @@ function handleOpen(btn) {
           // 주문 버튼의 텍스트 값 설정
           btnOrders.forEach((btnOrder) => {
             if (!menuDetail.stock) {
+              btnOrder.setAttribute("disabled", true);
               btnOrder.textContent = "일시 품절";
             } else {
+              btnOrder.removeAttribute("disabled");
               btnOrder.textContent =
                 amount + "개 담기 " + formatPrice(calculateTotal());
+            }
+
+            if (!checkTime()) {
+              btnOrder.setAttribute("disabled", true);
+              btnOrder.textContent = "영업시간이 아닙니다.";
             }
           });
         });

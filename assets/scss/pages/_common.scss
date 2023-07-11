@@ -1,5 +1,6 @@
 .container {
   background-color: $booking-color-border151;
+  min-height: 100vh;
   &:not(.order) {
     padding-top: $place-header-height + $place-tab-height;
     padding-bottom: $order-box-area-heigth;

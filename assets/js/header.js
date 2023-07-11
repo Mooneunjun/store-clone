@@ -253,7 +253,7 @@ menuList.forEach((item) => {
 
 console.log(menuList);
 // 평균을 구합니다.
-let average = sum / menuList.length;
+let average = (sum / menuList.length) * 1.5;
 
 // orderNum이 평균값보다 큰 경우, isPopular을 true로 설정합니다.
 menuList.forEach((item) => {
@@ -306,11 +306,26 @@ if (mostRecentMenu) {
   recentOrderArea.classList.add("hidden");
 }
 //최근 주문 옆에 할인메뉴를 추천하는 식으로 뛰워줌
+const filteredDiscountMenus = menuList.filter(
+  (menu) => menu != mostRecentMenu && menu.discount && menu.stock
+);
 // menuList 배열의 각 요소를 반복하면서 "orderNum" 값이 평균보다 크고 "mostRecentMenu"가 아닌 메뉴를 filteredMenus 배열에 추가합니다.
 const filteredMenus = menuList.filter(
-  (menu) => menu != mostRecentMenu && menu.isPopular && menu.category != "음료"
+  (menu) =>
+    menu != mostRecentMenu &&
+    !menu.discount &&
+    menu.stock &&
+    menu.isPopular &&
+    menu.category != "음료"
 );
 
+// 할인 메뉴를 먼저 추가해줌
+filteredDiscountMenus.forEach((menu) => {
+  // 메뉴 아이템을 생성하여 "recent-menu-list"에 추가합니다.
+  const menuItem = createMenuItem(menu);
+  recentMenuList.appendChild(menuItem);
+});
+// 이닉 메뉴를 추가해줌
 filteredMenus.forEach((menu) => {
   // 메뉴 아이템을 생성하여 "recent-menu-list"에 추가합니다.
   const menuItem = createMenuItem(menu);

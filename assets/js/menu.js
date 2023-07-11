@@ -433,7 +433,7 @@ categoryItems.forEach(function (item) {
   const menuListArea = document.createElement("div");
   menuListArea.className = "menu-list-area";
   menuListArea.id = categoryName.replace(/\s+/g, "_");
-  menuListArea.classList.add("is-closed");
+  // menuListArea.classList.add("is-closed");
 
   // 카테고리별 메뉴 리스트 내용
   const menuListInner = document.createElement("div");

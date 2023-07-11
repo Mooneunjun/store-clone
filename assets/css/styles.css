@@ -15,6 +15,14 @@
     transform: translateY(110%);
   }
 }
+@keyframes slideDownCart {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
 @keyframes fade-out {
   0% {
     opacity: 1;
@@ -440,7 +448,7 @@ body.scroll-off {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 4px;
+  margin-left: 5px;
   width: 35px;
   height: 35px;
   border-radius: 5px;
@@ -1588,6 +1596,7 @@ body.scroll-off {
 
 .container {
   background-color: #f4f7f9;
+  min-height: 100vh;
 }
 .container:not(.order) {
   padding-top: 94px;
