@@ -1,10 +1,13 @@
 .order-content {
-  margin: -40px 10px 0;
-
+  position: relative;
+  margin: 0px 10px 0;
+  background-color: #fff;
+  border-radius: 6px;
+  webkit-box-shadow: 0px 2px 10px rgba(77, 116, 255, 0.07);
+  box-shadow: 0px 2px 10px rgba(77, 116, 255, 0.07);
   .common-inner {
     position: relative;
-    background-color: #fff;
-    padding: 26px $m-padding 24px;
+
     &::before,
     &::after {
       content: "";
@@ -27,44 +30,152 @@
 }
 
 .order-content-top {
+  position: relative;
+  padding: 24px $m-padding 22px;
   .title {
     line-height: 1.2;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 700;
-    color: $green;
+    color: $booking-color-text2;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      vertical-align: -2px;
+      margin-right: 6px;
+      width: 21px;
+      height: 18px;
+      background-position: -662px -343px;
+      overflow: hidden;
+      color: rgba(0, 0, 0, 0);
+      white-space: nowrap;
+      background-image: url(https://m.booking.naver.com/public/images/sprites/sp_local_pay-29af4c35.png);
+      background-size: 689px 598px;
+    }
+    .label {
+      display: inline-block;
+      vertical-align: 2px;
+      padding: 2px 4px;
+      border-radius: 4px;
+      background-color: #000;
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 13px;
+      color: #fff;
+    }
   }
 
   .desc {
     margin-top: 8px;
     line-height: 1.2;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     color: $booking-color-text6;
   }
 
-  .count {
-    margin-top: 8px;
-    line-height: 20px;
-    font-size: 14px;
-    color: $booking-color-text4;
-    letter-spacing: -0.4px;
-  }
-
   .icon_area {
     position: absolute;
-    top: 26px;
+    top: 50%;
+    transform: translate(-00%, -50%);
     right: $m-padding;
-    width: 83px;
-    height: 83px;
+    width: 58px;
+    height: 58px;
     border-radius: 50%;
     background-color: #f0f9ff;
     .ico_type_pickup {
-      width: 45px;
-      height: 45px;
       position: absolute;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.order-content-body {
+  border-top: 1px dashed $booking-color-border147;
+  .no-order {
+    padding: 70px 0;
+    text-align: center;
+    .txt {
+      margin-top: 6px;
+      font-size: 14px;
+      color: #8f8f8f;
+    }
+  }
+
+  .menu-list {
+    padding: 0 $m-padding;
+  }
+
+  .menu-item {
+    position: relative;
+    align-items: flex-start;
+    padding: 22px $m-padding;
+
+    .menu-name-group {
+      padding-right: 40px;
+    }
+
+    .emnu-name {
+      line-height: 23px;
+      font-size: 18px;
+    }
+
+    .option-desc {
+      margin-top: 2px;
+      letter-spacing: -0.4px;
+      color: #8f8f8f;
+      font-size: 14px;
+      line-height: 19px;
+    }
+    .btn-option {
+      display: inline-block;
+      margin-top: 7px;
+      padding: 0 6px;
+      line-height: 20px;
+      border-radius: 3px;
+      border: 1px solid $booking-color-border109;
+      background-color: $booking-color-bg21;
+      font-size: 12px;
+      color: $booking-color-text4;
+    }
+
+    .amount-and-price {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 7px;
+      align-items: center;
+      .amount-select {
+        margin-top: 7px;
+        .amount {
+          width: 42px;
+          height: 28px;
+          line-height: 28px;
+        }
+        .btn-minus,
+        .btn-plus {
+          width: 28px;
+          height: 28px;
+        }
+      }
+
+      .menu-price {
+        margin-top: 10px;
+        font-size: 18px;
+        color: $booking-color-text6;
+        font-weight: bold;
+      }
+    }
+
+    .btn-delete {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 22px 18px;
+      .ico-delete {
+        width: 14px;
+        opacity: 0.3;
+      }
     }
   }
 }

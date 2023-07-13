@@ -1,6 +1,6 @@
 document.querySelector(".btn-order").addEventListener("click", function () {
-  // 메뉴가 음료수 카테고리인 경우 옵션 목록을 숨김
-  if (menuDetail.category === "음료") {
+  // 메뉴가 음료수와 스프 카테고리인 경우 옵션 목록을 숨김
+  if (menuDetail.category === "음료" || menuDetail.category === "스프") {
   }
   // 메뉴가 음료수 카테고리가 아닌 경우 옵션 목록을 표시
   else {
