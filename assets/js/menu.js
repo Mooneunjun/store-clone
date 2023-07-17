@@ -23,7 +23,6 @@ categoryItems.forEach(function (item) {
   orderArea.appendChild(menuListArea);
 });
 
-console.log(categoryNames);
 ////
 ////
 ////

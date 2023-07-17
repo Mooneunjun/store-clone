@@ -19,6 +19,7 @@
     font-size: 15px;
     color: $booking-color-text6;
     @include ellipsis;
+    width: 200px; /* specify a width */
   }
 
   .menu-price {

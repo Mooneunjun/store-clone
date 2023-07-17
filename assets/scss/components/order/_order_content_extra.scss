@@ -1,0 +1,67 @@
+.order-content-extra {
+  margin-bottom: 10px;
+  padding: 30px;
+  background-color: #fff;
+
+  .order-title {
+    display: block;
+    margin-bottom: 22px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed;
+    border-color: #cde8f0;
+    font-size: 20px;
+    letter-spacing: -0.3px;
+    color: $booking-color-text2;
+  }
+
+  .price-area {
+    .price-row {
+      + .price-row {
+        padding-top: 10px;
+      }
+
+      .title {
+        display: inline-block;
+        vertical-align: top;
+        font-size: 15px;
+        font-weight: 700;
+        color: #242424;
+      }
+
+      .price {
+        float: right;
+        padding-left: 10px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #333;
+        text-align: right;
+      }
+    }
+  }
+
+  .total-price-area {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1.5px solid;
+    border-color: #333;
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      line-height: 22px;
+      .title {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .price {
+        overflow: hidden;
+        padding-left: 10px;
+        font-size: 15px;
+        color: #fc4c42;
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+  }
+}

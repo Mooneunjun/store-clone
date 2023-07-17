@@ -26,7 +26,7 @@
             </a>
             <span id="store-name"></span>
           </h1>
-          <a href="#" class="my-orders"> 주문내역</a>
+          <a href="order.html" class="my-orders"> 주문내역</a>
         </div>
         <div class="place-tab scroll-x" role="tablist">
           <div class="tab-inner">
@@ -822,13 +822,13 @@
       <!--  //오더 영역 -->
 
       <!-- 담은메뉴여역-->
-      <div class="order-box-area">
+      <div class="order-box-area hidden">
         <div class="common-inner">
           <div>
             <p class="menu-name">메뉴이름</p>
             <p class="menu-price">9,999원</p>
           </div>
-          <a href="" class="order-cart">
+          <a href="order.html" class="order-cart">
             <span class="txt">주문하기</span>
             <span class="icon">
               <img
@@ -978,7 +978,7 @@
         </div>
 
         <div class="content-body">
-          <div class="option-group">
+          <div class="option-group option-base">
             <div class="option-title">
               <p class="title">
                 <span class="badge required">필수</span>
@@ -1016,7 +1016,7 @@
             </ul>
           </div>
 
-          <div class="option-group">
+          <div class="option-group option-group1">
             <div class="option-title">
               <p class="title">
                 <span class="badge">선택</span>
@@ -1024,7 +1024,7 @@
               </p>
               <p class="desc">최대 5개까지 선택할 수 있습니다.</p>
             </div>
-            <ul class="option-list option-list1">
+            <ul class="option-list">
               <li class="option-item">
                 <input type="checkbox" id="chk1" class="input-check" />
                 <label for="chk1" class="label">
@@ -1057,7 +1057,7 @@
             </ul>
           </div>
 
-          <div class="option-group">
+          <div class="option-group option-group2">
             <div class="option-title">
               <p class="title">
                 <span class="badge">선택</span>
@@ -1065,7 +1065,7 @@
               </p>
               <p class="desc">최대 5개까지 선택할 수 있습니다.</p>
             </div>
-            <ul class="option-list option-list2">
+            <ul class="option-list">
               <li class="option-item">
                 <label class="label">
                   <span class="label-txt"
@@ -1107,20 +1107,20 @@
         </div>
 
         <div class="content-bottom">
-          <button class="btn-order">1개 담기 9,999원</button>
+          <button class="btn-order">1개 담기 {Price}원</button>
         </div>
       </div>
     </div>
     <!-- // 옵션 팝업 영역-->
-    <script src="./assets/js/popup.js"></script>
-    <script src="./assets/js/script.js"></script>
-    <script src="./assets/js/header.js"></script>
-
-    <script src="./assets/js/category.js"></script>
-
-    <script src="./assets/js/menu.js"></script>
-
-    <script src="./assets/js/link.js"></script>
-    <script src="./assets/js/option_popup2.js"></script>
   </body>
+  <script src="./assets/js/popup.js"></script>
+  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/header.js"></script>
+
+  <script src="./assets/js/category.js"></script>
+
+  <script src="./assets/js/menu.js"></script>
+
+  <script src="./assets/js/link.js"></script>
+  <script src="./assets/js/option_popup2.js"></script>
 </html>

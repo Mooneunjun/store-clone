@@ -163,7 +163,7 @@ btnMinus.forEach((btn, index) => {
 ///
 ///
 window.addEventListener("DOMContentLoaded", (event) => {
-  document.querySelectorAll(".option-list2 .option-item").forEach((item) => {
+  document.querySelectorAll(".option-group2 .option-item").forEach((item) => {
     const addButton = item.querySelector(".btn-plus");
     const subtractButton = item.querySelector(".btn-minus");
     const amountElement = item.querySelector(".amount");

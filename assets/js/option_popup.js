@@ -33,6 +33,8 @@ document.querySelector(".btn-order").addEventListener("click", function () {
     badgeElement.textContent = "포장";
   } else if (selectedTabIndex === "1") {
     badgeElement.textContent = "매장";
+  } else if (selectedTabIndex === "2") {
+    badgeElement.textContent = "배달";
   }
 
   ///
@@ -81,16 +83,16 @@ function calculateTotal() {
   // amount 값을 가져와서 정수로 변환
   let amount = parseInt(document.querySelector(".amount").innerText, 10);
 
-  // option-list1에서 체크된 항목들의 개수를 구함
+  // option-group1에서 체크된 항목들의 개수를 구함
   let checkedCount = document.querySelectorAll(
-    ".option-list1 .input-check:checked"
+    ".option-group1 .input-check:checked"
   ).length;
 
   // 체크된 항목들의 개수에 따라 900원씩 추가
   let addition1 = checkedCount * 900;
 
-  // 두 번째 계산 부분: option-list2에서 체크된 항목과 수량에 따른 금액 계산
-  let optionItems = document.querySelectorAll(".option-list2 .option-item");
+  // 두 번째 계산 부분: option-group2에서 체크된 항목과 수량에 따른 금액 계산
+  let optionItems = document.querySelectorAll(".option-group2 .option-item");
   let addition2 = 0;
   let prices = [1500, 900, 1900];
   optionItems.forEach((item, index) => {

@@ -228,17 +228,17 @@ function handleOpen(btn) {
         // amount 값을 가져와서 정수로 변환
         let amount = parseInt(document.querySelector(".amount").innerText, 10);
 
-        // option-list1에서 체크된 항목들의 개수를 구함
+        // option-group1에서 체크된 항목들의 개수를 구함
         let checkedCount = document.querySelectorAll(
-          ".option-list1 .input-check:checked"
+          ".option-group1 .input-check:checked"
         ).length;
 
         // 체크된 항목들의 개수에 따라 900원씩 추가
         let addition1 = checkedCount * 900;
 
-        // 두 번째 계산 부분: option-list2에서 체크된 항목과 수량에 따른 금액 계산
+        // 두 번째 계산 부분: option-group2에서 체크된 항목과 수량에 따른 금액 계산
         let optionItems = document.querySelectorAll(
-          ".option-list2 .option-item"
+          ".option-group2 .option-item"
         );
         let addition2 = 0;
         let prices = [1500, 900, 1900];
@@ -333,10 +333,10 @@ function handleClose() {
   amount = 1;
 
   // DOM에서 옵션 목록 요소를 선택합니다.
-  const optionList = document.querySelector(".option-list");
+  const optionBase = document.querySelector(".option-base");
 
   // 모든 옵션 항목을 선택합니다.
-  const optionItems = optionList.querySelectorAll(".option-item");
+  const optionItems = optionBase.querySelectorAll(".option-item");
 
   // 첫 번째 옵션 항목을 선택합니다.
   const firstOption = optionItems[0];
@@ -349,7 +349,7 @@ function handleClose() {
     const radio = optionItem.querySelector(".input-radio");
     if (optionItem === firstOption) {
       // 첫 번째 옵션 항목인 경우 선택 상태로 설정합니다.
-      radio.checked = true;
+      firstRadio.checked = true;
     } else {
       // 첫 번째 옵션 항목이 아닌 경우 선택 상태를 해제합니다.
       radio.checked = false;
@@ -368,7 +368,9 @@ function handleClose() {
       btnMinus.disabled = true;
       btnMinus.classList.remove("enabled");
     });
-    const optionItems = document.querySelectorAll(".option-list2 .option-item");
+    const optionItems = document.querySelectorAll(
+      ".option-group2 .option-item"
+    );
     optionItems.forEach((optionItem) => {
       const amountElement = optionItem.querySelector(".amount");
       const checkedElement = optionItem.querySelector(".checked");
@@ -386,13 +388,199 @@ document.querySelector(".btn-close").addEventListener("click", function () {
 });
 //
 document.querySelector(".btn-order").addEventListener("click", function () {
+  // price와 discount 값을 가져오기
+  var price = menuItem.price;
+  var discount = menuItem.discount;
+
+  // 할인이 있는 경우 최종 가격 계산
+  var finalPrice = price;
+  if (discount) {
+    finalPrice = price - price * (discount / 100);
+  }
+
+  // 최종 가격을 100원 단위로 내림하여 계산
+  var roundedPrice = Math.floor(finalPrice / 100) * 100;
+
+  // 가격을 원화(₩) 형식으로 포맷하는 함수
+  function formatPrice(price) {
+    var formattedNumber = price.toLocaleString("ko-KR", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
+    return formattedNumber + "원";
+  }
+
+  //돈을 계산하는 함수
+  function calculateTotal() {
+    // amount 값을 가져와서 정수로 변환
+    let amount = parseInt(document.querySelector(".amount").innerText, 10);
+
+    // option-group1에서 체크된 항목들의 개수를 구함
+    let checkedCount = document.querySelectorAll(
+      ".option-group1 .input-check:checked"
+    ).length;
+
+    // 체크된 항목들의 개수에 따라 900원씩 추가
+    let addition1 = checkedCount * 900;
+
+    // 두 번째 계산 부분: option-group2에서 체크된 항목과 수량에 따른 금액 계산
+    let optionItems = document.querySelectorAll(".option-group2 .option-item");
+    let addition2 = 0;
+    let prices = [1500, 900, 1900];
+    optionItems.forEach((item, index) => {
+      let isChecked = item
+        .querySelector(".label")
+        .classList.contains("checked");
+      if (isChecked) {
+        let itemAmount = parseInt(
+          item.querySelector(".amount").textContent,
+          10
+        );
+        addition2 += prices[index] * itemAmount;
+      }
+    });
+
+    // 중간 합계와 추가 금액을 합해서 최종 금액을 구함
+    let total = amount * (roundedPrice + addition1 + addition2);
+
+    return total;
+  }
+  //
+  //
+  //
+  //!@#$#%#%#$%#$
+  //
+  //
+  //
+  let orderList = localStorage.getItem("orderList")
+    ? JSON.parse(localStorage.getItem("orderList"))
+    : [];
+
+  let amountSelect2 = document.querySelector("#amount-select-2 .amount");
+  if (menuItem.category === "음료" || menuItem.category === "스프") {
+    let orderListItem = orderList.find((item) => item.Name === menuItem.name);
+    if (orderListItem) {
+      // 이미 존재하는 메뉴일 경우, 가격만 업데이트
+      orderListItem.price += calculateTotal();
+      orderListItem.amount += Number(amountSelect2.textContent);
+    } else {
+      orderList.push({
+        Name: menuItem.name,
+        category: menuItem.category,
+        imageUrl: menuItem.imageUrl,
+        price: calculateTotal(),
+        amount: Number(amountSelect2.textContent),
+      });
+    }
+    localStorage.setItem("orderList", JSON.stringify(orderList));
+  } else {
+    let labelsText = "";
+    let optionBase = document.querySelectorAll(
+      ".option-base .input-radio:checked"
+    );
+
+    optionBase.forEach((input) => {
+      let label = document.querySelector(`label[for='${input.id}'] .label-txt`);
+      if (label) {
+        labelsText = label.textContent;
+      }
+    });
+
+    ///
+
+    let optionGroup1 = document.querySelectorAll(
+      ".option-group1 .input-check:checked"
+    );
+
+    optionGroup1.forEach((input) => {
+      let label = document.querySelector(`label[for='${input.id}'] .label-txt`);
+      if (label) {
+        labelsText += ", " + label.textContent;
+      }
+    });
+
+    //
+    //
+    //
+
+    let checkedItems = document.querySelectorAll(".option-group2 .checked");
+
+    checkedItems.forEach((item) => {
+      let label = item.querySelector(".label-txt");
+      let amount = item.nextElementSibling.querySelector(".amount");
+      if (label && amount) {
+        labelsText +=
+          ", " + label.textContent + " " + amount.textContent + "개";
+      }
+    });
+
+    let cleanedText = labelsText.replace(/\s+/g, " ");
+
+    let orderListItem = orderList.find(
+      (item) => item.Name === menuItem.name && item.option === cleanedText
+    );
+    if (orderListItem) {
+      // 이미 존재하는 메뉴일 경우, 가격만 업데이트
+      orderListItem.price += calculateTotal();
+      orderListItem.amount += Number(amountSelect2.textContent);
+    } else {
+      orderList.push({
+        Name: menuItem.name,
+        category: menuItem.category,
+        imageUrl: menuItem.imageUrl,
+        price: calculateTotal(),
+        amount: Number(amountSelect2.textContent),
+        option: cleanedText,
+      });
+    }
+    localStorage.setItem("orderList", JSON.stringify(orderList));
+  }
+
+  //////
+  let container = document.querySelector(".container");
+  container.classList.add("order");
+  let orderBoxArea = document.querySelector(".order-box-area");
+  orderBoxArea.classList.remove("hidden");
+
+  orderList = localStorage.getItem("orderList");
+
+  if (orderList) {
+    orderList = JSON.parse(orderList);
+  } else {
+    orderList = [];
+  }
+
+  let OrderBoxName = document.querySelector(".order-box-area .menu-name");
+  let OrderBoxPrice = document.querySelector(".order-box-area .menu-price");
+  let OrderBoxNum = document.querySelector(".order-box-area .num");
+
+  // 모든 price를 합치기
+  let total = orderList.reduce((sum, item) => sum + item.price, 0);
+  OrderBoxPrice.textContent = formatPrice(total);
+
+  // 모든 Name을 하나의 문자열로 가져오기
+  let menuNames = orderList.map((item) => item.Name).join(", ");
+  OrderBoxName.textContent = menuNames;
+
+  // 모든 amount를 합치기
+  OrderBoxNum.textContent = orderList.reduce(
+    (sum, item) => sum + item.amount,
+    0
+  );
+  OrderBoxNum.style = "animation: OrderSlideDown 0.7s";
+
+  //3초 후에 사라지게 하기
+  setTimeout(function () {
+    OrderBoxNum.style = "";
+  }, 7000);
+  /////
   handleClose();
 });
 ///
 
 //
 window.addEventListener("DOMContentLoaded", (event) => {
-  document.querySelectorAll(".option-list2 .option-item").forEach((item) => {
+  document.querySelectorAll(".option-group2 .option-item").forEach((item) => {
     const addButton = item.querySelector(".btn-plus");
     const subtractButton = item.querySelector(".btn-minus");
     const amountElement = item.querySelector(".amount");

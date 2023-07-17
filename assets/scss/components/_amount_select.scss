@@ -24,8 +24,8 @@
     &::before {
       content: "";
       display: block;
-      width: 13px;
-      height: 1px;
+      width: 12px;
+      height: 2px;
       background-color: currentColor;
     }
   }
@@ -40,10 +40,10 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 1px;
-      height: 13px;
+      width: 2px;
+      height: 12px;
       background-color: currentColor;
-      transform: translate(-50%, -50%);
+      transform: translate(-51%, -49%);
     }
   }
 
