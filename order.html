@@ -4,9 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="theme-color" content="#333" />
+    <meta name="theme-color" content="#f3fbff" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
     <title>주문 스토어 프로젝트</title>
     <link rel="stylesheet" href="./assets/css/styles.css" />
   </head>
@@ -494,5 +497,20 @@
     </div>
 
     <script src="./assets/js/order.js"></script>
+    <script>
+      let lastTouchTime = 0;
+
+      window.addEventListener(
+        "touchend",
+        function (event) {
+          const now = window.performance.now();
+          if (now - lastTouchTime < 500) {
+            event.preventDefault();
+          }
+          lastTouchTime = now;
+        },
+        { passive: false }
+      ); // not passive
+    </script>
   </body>
 </html>

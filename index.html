@@ -1123,4 +1123,19 @@
 
   <script src="./assets/js/link.js"></script>
   <script src="./assets/js/option_popup2.js"></script>
+  <script>
+    let lastTouchTime = 0;
+
+    window.addEventListener(
+      "touchend",
+      function (event) {
+        const now = window.performance.now();
+        if (now - lastTouchTime < 500) {
+          event.preventDefault();
+        }
+        lastTouchTime = now;
+      },
+      { passive: false }
+    ); // not passive
+  </script>
 </html>

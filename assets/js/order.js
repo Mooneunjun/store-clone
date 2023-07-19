@@ -1,5 +1,13 @@
 // "page-title-area" 요소 가져오기
-const pageTitleArea = document.querySelector(".page-title-area .title");
+const pageTitleArea = document.querySelector(".page-title-area");
+
+function changeThemeColor(color) {
+  // theme-color 메타 태그를 선택합니다.
+  const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+
+  // theme-color 메타 태그의 content 속성을 변경합니다.
+  themeColorMeta.setAttribute("content", color);
+}
 
 // 스크롤 이벤트 리스너 추가
 window.addEventListener("scroll", function () {
@@ -11,9 +19,14 @@ window.addEventListener("scroll", function () {
   if (scrollDistance > 2) {
     // "fixed" 클래스 추가
     pageTitleArea.classList.add("fixed");
+
+    //     <meta name="theme-color" content="#f3fbff" />  #fff 로 변경
+    changeThemeColor("#fff");
   } else {
     // "fixed" 클래스 제거
     pageTitleArea.classList.remove("fixed");
+    //     <meta name="theme-color" content="#f3fbff" /> #f3fbff로 되돌리기
+    changeThemeColor("#f3fbff");
   }
 });
 
@@ -22,7 +35,7 @@ window.addEventListener("scroll", function () {
 // .btn-delete 클래스를 가진 요소에 이벤트 리스너를 추가합니다.
 document.querySelector(".btn-close").addEventListener("click", function () {
   // 이벤트가 발생하면 브라우저의 이전 페이지로 돌아갑니다.
-  window.history.back();
+  history.back();
 });
 
 // 페이지 로드 시 실행
@@ -54,19 +67,42 @@ window.addEventListener("load", function () {
     orderContentTopDesc.innerText = "매장에서 식사하실 수 있습니다.";
   }
   let orderListData = localStorage.getItem("orderList");
+  let orderList = JSON.parse(orderListData);
+  // price 합계 초기값 설정
+  let totalPrice = 0;
+
+  const priceArea = document.querySelector(".price-area .price");
+  const totalPriceArea = document.querySelector(".total-price-area .price");
+  const orderContentExtra = document.querySelector(".order-content-extra");
   let noOrder = document.querySelector(".no-order");
-  if (orderListData) {
+
+  if (orderListData && orderListData !== "[]") {
     noOrder.classList.add("hidden");
-    // 함수 호출
+    //오더 리스트 생성 함수 호출
     createOrderList();
+
+    // orderList의 각 메뉴에 대해 price 합산
+    orderList.forEach((menu) => {
+      // 메뉴의 price와 amount 값을 곱하여 합산
+      totalPrice += menu.price;
+    });
+
+    priceArea.textContent = totalPrice.toLocaleString() + "원";
+
+    totalPrice = totalPrice + 100;
+    totalPriceArea.textContent = totalPrice.toLocaleString() + "원";
   } else {
     noOrder.classList.remove("hidden");
+    orderContentExtra.classList.add("hidden");
   }
 
   /// 더하기 빼기 버튼 클릭 이벤트
   registerMenuEventListeners();
+
+  deleteMenu();
 });
 
+//오더 리스트 생성
 function createOrderList() {
   let orderListData = localStorage.getItem("orderList");
   let orderList = JSON.parse(orderListData);
@@ -182,6 +218,9 @@ function registerMenuEventListeners() {
     const menuNameElement = menuItem.querySelector(".menu-name");
     const optionDescElement = menuItem.querySelector(".option-desc");
 
+    ///
+    ///
+    ///
     // 빼기 버튼 클릭 시
     btnMinus.addEventListener("click", () => {
       let amount = parseInt(amountElement.textContent);
@@ -199,12 +238,19 @@ function registerMenuEventListeners() {
 
         ///
         // 로컬스토리지에서 orderList 가져오기
-        const orderListData = localStorage.getItem("orderList");
-        const orderList = JSON.parse(orderListData);
+        let orderListData = localStorage.getItem("orderList");
+        let orderList = JSON.parse(orderListData);
+        // price 합계 초기값 설정
+        let totalPrice = 0;
 
         // 찾을 메뉴 정보
         const targetName = menuNameElement.textContent;
         const targetOption = optionDescElement.textContent;
+
+        const priceArea = document.querySelector(".price-area .price");
+        const totalPriceArea = document.querySelector(
+          ".total-price-area .price"
+        );
 
         const matchedNameMenu = orderList.find(
           (menu) => menu.Name === targetName
@@ -221,20 +267,25 @@ function registerMenuEventListeners() {
           // 로컬스토리지에 변경된 orderList 저장
           localStorage.setItem("orderList", JSON.stringify(orderList));
 
-          // // 로컬스토리지에서 orderList 가져오기
-          // const orderListData = localStorage.getItem("orderList");
-          // const orderList = JSON.parse(orderListData);
+          // 로컬스토리지에서 orderList 가져오기
+          orderListData = localStorage.getItem("orderList");
+          orderList = JSON.parse(orderListData);
 
-          // // price 합계 초기값 설정
-          // let totalPrice = 0;
+          // price 합계 초기값 설정
+          totalPrice = 0;
 
-          // // orderList의 각 메뉴에 대해 price 합산
-          // orderList.forEach((menu) => {
-          //   // 메뉴의 price와 amount 값을 곱하여 합산
-          //   totalPrice += menu.price * menu.amount;
-          // });
+          // orderList의 각 메뉴에 대해 price 합산
+          orderList.forEach((menu) => {
+            // 메뉴의 price와 amount 값을 곱하여 합산
+            totalPrice += menu.price;
+          });
 
-          // console.log(totalPrice); // 합계 출력
+          console.log(totalPrice); // 합계 출력
+
+          priceArea.textContent = totalPrice.toLocaleString() + "원";
+
+          totalPrice = totalPrice + 100;
+          totalPriceArea.textContent = totalPrice.toLocaleString() + "원";
         } else {
           // option 값이 일치하는 메뉴 찾기
           const matchedMenu = orderList.find(
@@ -249,6 +300,26 @@ function registerMenuEventListeners() {
             matchedMenu.amount = amount;
             // 로컬스토리지에 변경된 orderList 저장
             localStorage.setItem("orderList", JSON.stringify(orderList));
+
+            // 로컬스토리지에서 orderList 가져오기
+            orderListData = localStorage.getItem("orderList");
+            orderList = JSON.parse(orderListData);
+
+            // price 합계 초기값 설정
+            totalPrice = 0;
+
+            // orderList의 각 메뉴에 대해 price 합산
+            orderList.forEach((menu) => {
+              // 메뉴의 price와 amount 값을 곱하여 합산
+              totalPrice += menu.price;
+            });
+
+            console.log(totalPrice); // 합계 출력
+
+            priceArea.textContent = totalPrice.toLocaleString() + "원";
+
+            totalPrice = totalPrice + 100;
+            totalPriceArea.textContent = totalPrice.toLocaleString() + "원";
           }
         }
 
@@ -277,13 +348,19 @@ function registerMenuEventListeners() {
       amountElement.textContent = amount;
       //
       //
-      // 로컬스토리지에서 orderList 가져오기
-      const orderListData = localStorage.getItem("orderList");
-      const orderList = JSON.parse(orderListData);
 
       // 찾을 메뉴 정보
       const targetName = menuNameElement.textContent;
       const targetOption = optionDescElement.textContent;
+
+      // 로컬스토리지에서 orderList 가져오기
+      let orderListData = localStorage.getItem("orderList");
+      let orderList = JSON.parse(orderListData);
+      // price 합계 초기값 설정
+      let totalPrice = 0;
+
+      const priceArea = document.querySelector(".price-area .price");
+      const totalPriceArea = document.querySelector(".total-price-area .price");
 
       const matchedNameMenu = orderList.find(
         (menu) => menu.Name === targetName
@@ -298,6 +375,26 @@ function registerMenuEventListeners() {
 
         // 로컬스토리지에 변경된 orderList 저장
         localStorage.setItem("orderList", JSON.stringify(orderList));
+
+        // 로컬스토리지에서 orderList 가져오기
+        orderListData = localStorage.getItem("orderList");
+        orderList = JSON.parse(orderListData);
+
+        // price 합계 초기값 설정
+        totalPrice = 0;
+
+        // orderList의 각 메뉴에 대해 price 합산
+        orderList.forEach((menu) => {
+          // 메뉴의 price와 amount 값을 곱하여 합산
+          totalPrice += menu.price;
+        });
+
+        console.log(totalPrice); // 합계 출력
+
+        priceArea.textContent = totalPrice.toLocaleString() + "원";
+
+        totalPrice = totalPrice + 100;
+        totalPriceArea.textContent = totalPrice.toLocaleString() + "원";
       } else {
         // option 값이 일치하는 메뉴 찾기
         const matchedMenu = orderList.find(
@@ -312,6 +409,26 @@ function registerMenuEventListeners() {
           matchedMenu.amount = amount;
           // 로컬스토리지에 변경된 orderList 저장
           localStorage.setItem("orderList", JSON.stringify(orderList));
+
+          // 로컬스토리지에서 orderList 가져오기
+          orderListData = localStorage.getItem("orderList");
+          orderList = JSON.parse(orderListData);
+
+          // price 합계 초기값 설정
+          totalPrice = 0;
+
+          // orderList의 각 메뉴에 대해 price 합산
+          orderList.forEach((menu) => {
+            // 메뉴의 price와 amount 값을 곱하여 합산
+            totalPrice += menu.price;
+          });
+
+          console.log(totalPrice); // 합계 출력
+
+          priceArea.textContent = totalPrice.toLocaleString() + "원";
+
+          totalPrice = totalPrice + 100;
+          totalPriceArea.textContent = totalPrice.toLocaleString() + "원";
         } else {
           console.log("일치하는 메뉴가 없습니다.");
         }
@@ -328,3 +445,110 @@ function registerMenuEventListeners() {
 //
 //
 //
+// 삭제 버튼 클릭 이벤트 로컬스토리지에서 삭제 함수
+function deleteMenu() {
+  // 로컬스토리지에서 orderList 가져오기
+  let orderListData = localStorage.getItem("orderList");
+  let orderList = JSON.parse(orderListData);
+  const index = "";
+  // .btn-delete 요소를 모두 선택합니다.
+  const deleteButtons = document.querySelectorAll(".btn-delete");
+
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const menuItem = button.closest(".menu-item");
+
+      if (menuItem) {
+        const menuName = menuItem.querySelector(".menu-name").textContent;
+        const optionDesc = menuItem.querySelector(".option-desc").textContent;
+        const orderContentExtra = document.querySelector(
+          ".order-content-extra"
+        );
+        let noOrder = document.querySelector(".no-order");
+
+        // price 합계 초기값 설정
+        let totalPrice = 0;
+
+        const priceArea = document.querySelector(".price-area .price");
+        const totalPriceArea = document.querySelector(
+          ".total-price-area .price"
+        );
+
+        const matchedNameMenu = orderList.find(
+          (menu) => menu.Name === menuName
+        );
+
+        if (
+          matchedNameMenu.category === "음료" ||
+          matchedNameMenu.category === "스프"
+        ) {
+          const index = orderList.indexOf(matchedNameMenu);
+          if (index !== -1) {
+            orderList.splice(index, 1);
+            localStorage.setItem("orderList", JSON.stringify(orderList));
+          }
+
+          // .menu-item을 삭제합니다.
+          menuItem.remove();
+
+          orderListData = localStorage.getItem("orderList");
+          orderList = JSON.parse(orderListData);
+
+          if (orderListData && orderListData !== "[]") {
+            noOrder.classList.add("hidden");
+
+            // orderList의 각 메뉴에 대해 price 합산
+            orderList.forEach((menu) => {
+              // 메뉴의 price와 amount 값을 곱하여 합산
+              totalPrice += menu.price;
+            });
+
+            priceArea.textContent = totalPrice.toLocaleString() + "원";
+
+            totalPrice = totalPrice + 100;
+            totalPriceArea.textContent = totalPrice.toLocaleString() + "원";
+          } else {
+            noOrder.classList.remove("hidden");
+            orderContentExtra.classList.add("hidden");
+          }
+        } else {
+          const matchedMenu = orderList.find(
+            (menu) => menu.Name === menuName && menu.option === optionDesc
+          );
+
+          if (matchedMenu) {
+            const index = orderList.indexOf(matchedMenu);
+            if (index !== -1) {
+              orderList.splice(index, 1);
+              localStorage.setItem("orderList", JSON.stringify(orderList));
+            }
+
+            // .menu-item을 삭제합니다.
+            menuItem.remove();
+
+            orderListData = localStorage.getItem("orderList");
+            orderList = JSON.parse(orderListData);
+
+            if (orderListData && orderListData !== "[]") {
+              noOrder.classList.add("hidden");
+
+              // orderList의 각 메뉴에 대해 price 합산
+              orderList.forEach((menu) => {
+                // 메뉴의 price와 amount 값을 곱하여 합산
+                totalPrice += menu.price;
+              });
+
+              priceArea.textContent = totalPrice.toLocaleString() + "원";
+
+              totalPrice = totalPrice + 100;
+              totalPriceArea.textContent = totalPrice.toLocaleString() + "원";
+            } else {
+              noOrder.classList.remove("hidden");
+              orderContentExtra.classList.add("hidden");
+            }
+          }
+        }
+      }
+    });
+  });
+}
