@@ -448,8 +448,7 @@ function registerMenuEventListeners() {
 // 삭제 버튼 클릭 이벤트 로컬스토리지에서 삭제 함수
 function deleteMenu() {
   // 로컬스토리지에서 orderList 가져오기
-  let orderListData = localStorage.getItem("orderList");
-  let orderList = JSON.parse(orderListData);
+
   const index = "";
   // .btn-delete 요소를 모두 선택합니다.
   const deleteButtons = document.querySelectorAll(".btn-delete");
@@ -465,6 +464,9 @@ function deleteMenu() {
           ".order-content-extra"
         );
         let noOrder = document.querySelector(".no-order");
+
+        let orderListData = localStorage.getItem("orderList");
+        let orderList = JSON.parse(orderListData);
 
         // price 합계 초기값 설정
         let totalPrice = 0;
