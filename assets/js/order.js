@@ -141,7 +141,7 @@ function createOrderList() {
 
     let icoDeleteElement = document.createElement("img");
     icoDeleteElement.classList.add("ico-delete");
-    icoDeleteElement.src = "../assets/images/ico-close.svg";
+    icoDeleteElement.src = "./assets/images/ico-close.svg";
     icoDeleteElement.alt = "삭제";
 
     btnDeleteElement.appendChild(icoDeleteElement);
