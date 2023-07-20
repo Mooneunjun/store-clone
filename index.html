@@ -1130,7 +1130,7 @@
       "touchend",
       function (event) {
         const now = window.performance.now();
-        if (now - lastTouchTime < 500) {
+        if (now - lastTouchTime < 300) {
           event.preventDefault();
         }
         lastTouchTime = now;

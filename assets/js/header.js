@@ -42,6 +42,9 @@ function checkTimeAndUpdate() {
 
 // 페이지가 로드되면 함수를 처음 호출.
 checkTimeAndUpdate();
+window.addEventListener("pageshow", function (event) {
+  checkTimeAndUpdate();
+});
 
 // 포장 배달 팝업창 숨기기
 function hidePopup() {
@@ -68,6 +71,7 @@ function changeTabStatus(tabSwitches, targetTab) {
 
   targetTab.classList.add("is-active");
 }
+
 //
 /**
  * body 요소의 'scroll-off' 클래스를 제거하여 스크롤을 활성화합니다.
@@ -114,6 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
   // 웹 페이지 로딩 시 저장된 탭 인덱스를 가져와서 해당 탭 상태를 업데이트합니다.
+
   const savedIndex = localStorage.getItem("selectedTabIndex");
   if (savedIndex !== null) {
     changeTabStatus(tabSwitches, tabSwitches[savedIndex]);
@@ -128,7 +133,21 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 ///
+window.addEventListener("pageshow", function (event) {
+  const tabSwitches = document.querySelectorAll(".tab-switch");
+  // 뒤로 가기 동작 후에 페이지가 다시 표시되었을 때 실행할 함수를 여기에 작성합니다.
+  const savedIndex = localStorage.getItem("selectedTabIndex");
+  if (savedIndex !== null) {
+    changeTabStatus(tabSwitches, tabSwitches[savedIndex]);
+    updateTabInfo(savedIndex);
+    var dimmedLayer = document.getElementsByClassName("dimmed-layer")[0];
 
+    if (dimmedLayer && dimmedLayer.classList.contains("hidden")) {
+      changeThemeColor("#fff");
+      enableScroll();
+    }
+  }
+});
 ///
 
 //

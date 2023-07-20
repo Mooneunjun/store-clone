@@ -461,6 +461,7 @@ body.scroll-off {
   height: 35px;
   border-radius: 5px;
   border: 1px solid #e5e5e5;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.04);
 }
 .menu-item .btn-cart .ico-cart {
   width: 20px;

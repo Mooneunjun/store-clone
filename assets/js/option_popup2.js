@@ -1,6 +1,6 @@
 ///
 ///
-// 获取所有的 .btn-cart 元素
+//
 const optionItems = document.querySelectorAll(".option-item");
 const btnCarts = document.querySelectorAll(".btn-cart");
 const btnOrder = document.querySelector(".btn-order");
