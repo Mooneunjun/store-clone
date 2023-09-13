@@ -1,0 +1,6 @@
+{
+  "name": "store",
+  "display": "standalone",
+  "start_url": "https://mooneunjun.github.io/store-clone",
+  "scope": "/"
+}
